@@ -20,3 +20,8 @@ Base class for flamework-api derived API classes
 ## TO DO
 
 * A proper `setup.py` file
+
+## See also
+
+* https://github.com/cooperhewitt/flamework-api
+* https://github.com/cooperhewitt/flamework
