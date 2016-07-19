@@ -22,11 +22,11 @@ class OAuth2:
         logging.debug("calling %s with args %s" % (method, kwargs))
 
         kwargs['method'] = method
-        kwargs['token'] = self.access_token
+        kwargs['access_token'] = self.access_token
 
         (headers, body) = encode(kwargs)
 
-        url = self.endpoint + '/' + method
+        url = self.endpoint
         logging.debug("calling %s" % url)
 
         conn = httplib.HTTPSConnection(self.hostname)
