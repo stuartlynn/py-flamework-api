@@ -17,6 +17,10 @@ Base class for flamework-api derived API classes
 	rsp = api.execute_method(method, args)
 	print rsp
 
+## Contributors
+
+* [Who's On First](https://github.com/whosonfirst)
+
 ## See also
 
 * https://github.com/cooperhewitt/flamework-api
