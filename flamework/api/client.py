@@ -54,12 +54,19 @@ class OAuth2:
 
         while not pages or page <= pages:
 
-            rsp = self.execute_method(method, args, encode)
+            kwargs['page'] = 1
+            rsp = self.execute_method(method, kwargs, encode)
+
+            if not cb(rsp):
+                logging.warning("execute_method_paginated callback did not return True, halting iteration")
+                break
 
             if not pages:
-                pages = rsp['pages']
+                pages = rsp.get('pages', None)
 
-            cb(rsp)
+            if not pages:
+                logging.error("can not determine pagination information")
+                break
 
             page += 1
         
