@@ -19,6 +19,7 @@ args = {
 
 rsp = api.execute_method(method, args)
 print rsp
+```
 
 ## Usage - fancy
 
