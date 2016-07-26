@@ -47,6 +47,22 @@ class OAuth2:
 
         return data
 
+    def execute_method_paginated(self, method, kwargs, cb, encode=encode_urlencode):
+
+        pages = None
+        page = 1
+
+        while not pages or page <= pages:
+
+            rsp = self.execute_method(method, args, encode)
+
+            if not pages:
+                pages = rsp['pages']
+
+            cb(rsp)
+
+            page += 1
+        
 if __name__ == '__main__':
 
     import sys
