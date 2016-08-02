@@ -64,6 +64,10 @@ class OAuth2:
             if not pages:
                 pages = rsp.get('pages', None)
 
+            if pages == 0:
+                logging.debug("query returned 0 pages, so moving on to the next thing")
+                break
+            
             if not pages:
                 logging.error("can not determine pagination information")
                 break
