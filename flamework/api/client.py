@@ -1,4 +1,5 @@
 import urllib
+import urlparse
 import httplib
 import base64
 import json
@@ -49,31 +50,27 @@ class OAuth2:
 
     def execute_method_paginated(self, method, kwargs, cb, encode=encode_urlencode):
 
-        pages = None
-        page = 1
-
-        while not pages or page <= pages:
-
-            kwargs['page'] = 1
+        while True:
+            
             rsp = self.execute_method(method, kwargs, encode)
 
             if not cb(rsp):
                 logging.warning("execute_method_paginated callback did not return True, halting iteration")
                 break
 
-            if not pages:
-                pages = rsp.get('pages', None)
+            next_query = rsp.get('next_query', None)
 
-            if pages == 0:
-                logging.debug("query returned 0 pages, so moving on to the next thing")
+            if not next_query:
                 break
             
-            if not pages:
-                logging.error("can not determine pagination information")
-                break
+            tmp = urlparse.parse_qs(next_query)
 
-            page += 1
-        
+            # sigh...
+            
+            for k, v in tmp.items():
+                kwargs[k] = v[0]
+
+            
 if __name__ == '__main__':
 
     import sys
