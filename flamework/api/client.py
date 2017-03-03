@@ -58,6 +58,23 @@ class OAuth2:
                 logging.warning("execute_method_paginated callback did not return True, halting iteration")
                 break
 
+            # this is the old way and is here for backwards
+            # compatibility (20170302/thisisaaronland)
+            
+            if not rsp.has_key('next_query'):
+
+                pages = rsp.get('pages', None)
+                page = rsp.get('page', None)
+
+                if page == pages:
+                    break
+
+                kwargs['page'] = page + 1
+                continue
+
+            # this is the new shiny
+            # (20170302/thisisaaronland)
+            
             next_query = rsp.get('next_query', None)
 
             if not next_query:
