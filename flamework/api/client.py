@@ -18,13 +18,17 @@ class OAuth2:
 
         logging.debug("setup API to use %s%s" % (self.hostname, self.endpoint))
 
+    def set_auth(self, kwargs):
+        kwargs["access_token"] = self.access_token
+        
     def execute_method(self, method, kwargs, encode=encode_urlencode):
 
         logging.debug("calling %s with args %s" % (method, kwargs))
 
         kwargs['method'] = method
-        kwargs['access_token'] = self.access_token
 
+        self.set_auth(kwargs)
+        
         (headers, body) = encode(kwargs)
 
         url = self.endpoint
