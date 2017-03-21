@@ -24,11 +24,6 @@ setup(
     description='Base class for flamework-api derived API classes',
     author='Cooper Hewitt Smithsonian Design Museum',
     url='https://github.com/cooperhewitt/py-flamework-api',
-    dependency_links=[
-    ],
-    install_requires=[
-        'requests'
-    ],
     packages=packages,
     scripts=[],
     download_url='https://github.com/cooperhewitt/py-flamework-api/releases/tag/' + version,

@@ -2,6 +2,12 @@
 
 Base class for flamework-api derived API classes
 
+## Install
+
+```
+sudo pip install -r requirements.txt
+```
+
 ## Usage - simple
 
 ### execute_method
