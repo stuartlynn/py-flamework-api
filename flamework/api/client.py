@@ -28,7 +28,7 @@ class OAuth2:
         kwargs['method'] = method
 
         self.set_auth(kwargs)
-        
+
         (headers, body) = encode(kwargs)
 
         url = self.endpoint
